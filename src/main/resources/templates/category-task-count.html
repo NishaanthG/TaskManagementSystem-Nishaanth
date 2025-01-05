@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task Counts</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<h1>Categories with Task Counts</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Task Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="entry : ${taskCounts}">
+            <td th:text="${entry.key}"></td>
+            <td th:text="${entry.value}"></td>
+        </tr>
+    </tbody>
+</table>
+<a href="/categories/all">Back to Categories</a>
+</body>
+</html>

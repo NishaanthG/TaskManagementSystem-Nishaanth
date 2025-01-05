@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #121212, #1a1a1a);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #2c2c2c;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 3px solid #ff9800;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ff9800;
+            text-shadow: 2px 2px 6px rgba(255, 152, 0, 0.6);
+        }
+
+        .container {
+            flex: 1;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff9800;
+            border-left: 5px solid #ff9800;
+            padding-left: 10px;
+            font-weight: 600;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .links a {
+            flex: 1 1 40%;
+            background: #ff9800;
+            color: #121212;
+            padding: 15px 20px;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .links a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(255, 152, 0, 0.8);
+            background: #e65100;
+            color: #ffffff;
+        }
+
+        footer {
+            background: #2c2c2c;
+            padding: 15px 0;
+            text-align: center;
+            border-top: 3px solid #ff9800;
+            box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        footer p {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ff9800;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Task Management Dashboard</h1>
+    </header>
+    <div class="container">
+        <!-- Categories Section -->
+        <div class="section">
+            <h3>Categories</h3>
+            <div class="links">
+                <a href="/categories/all">View All Categories</a>
+            </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="section">
+            <h3>Comments</h3>
+            <div class="links">
+                <a href="/comments/all">View All Comments</a>
+                <a href="/comments/new">Add New Comment</a>
+            </div>
+        </div>
+
+        <!-- Tasks Section -->
+        <div class="section">
+            <h3>Tasks</h3>
+            <div class="links">
+                <a href="/tasks/priority-status">Tasks by Priority and Status</a>
+                <a href="/tasks/due-soon">Tasks Due Soon</a>
+                <a href="/tasks/user-status">Tasks by User & Status</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 | Task Management Dashboard | By Nishaanth</p>
+    </footer>
+</body>
+</html>

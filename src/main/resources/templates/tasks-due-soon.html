@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tasks Due Soon</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    <h1>Tasks Due Soon</h1>
+    <div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Task ID</th>
+                    <th>Task Name</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="task : ${tasks}">
+                    <td th:text="${task.taskID}"></td>
+                    <td th:text="${task.taskName}"></td>
+                    <td th:text="${task.dueDate}"></td>
+                    <td th:text="${task.status}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

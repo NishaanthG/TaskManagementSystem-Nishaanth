@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Comment</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    <h1>Add New Comment</h1>
+    <form action="/comments/add" method="post">
+        <label for="text">Text:</label>
+        <input type="text" id="text" name="text" required>
+        <br>
+        <label for="taskID">Task ID:</label>
+        <input type="number" id="taskID" name="taskID" required>
+        <br>
+        <label for="userID">User ID:</label>
+        <input type="number" id="userID" name="userID" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

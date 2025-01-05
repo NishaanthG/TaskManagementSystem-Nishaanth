@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tasks by User and Status</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    <h1>Tasks by User and Status</h1>
+    <form method="get" th:action="@{/tasks/user-status}">
+        <label for="userId">User ID:</label>
+        <input type="number" id="userId" name="userId" required>
+        <br>
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required>
+        <br>
+        <button type="submit">Search</button>
+    </form>
+    <br>
+    <div th:if="${tasks}">
+        <h2>Results:</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Task ID</th>
+                    <th>Task Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="task : ${tasks}">
+                    <td th:text="${task.taskID}"></td>
+                    <td th:text="${task.taskName}"></td>
+                    <td th:text="${task.status}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
