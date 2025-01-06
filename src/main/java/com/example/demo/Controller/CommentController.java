@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,34 +20,62 @@ import com.example.demo.Success.SuccessResponse;
 import com.example.demo.dto.CommentDTO;
 
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * Rest Controller for managing comments.
+ * Provides endpoints for creating, updating, and deleting comments.
+ */
 @RestController
 public class CommentController {
-	
-	@Autowired
-	private CommentService cs;
-	
-	@DeleteMapping("/api/comments/delete/{commentId}")
-	public ResponseEntity<SuccessResponse> DeleteCommentById(@PathVariable int commentId){
-		cs.DeleteCommentById(commentId);
-		
-		return ResponseEntity.ok(new SuccessResponse("DELETESUCCESS","Comment deleted successfully"));
-	}
-	
-	@RequestMapping(value = "/api/comments/post" , method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<SuccessResponse> AddNewComment(@Valid @RequestBody CommentDTO c){
-		
-		cs.addComment(c);
-		
-		return ResponseEntity.ok(new SuccessResponse("POSTSUCCESS","Commennts added successfully"));
-	}
-	
-	@PutMapping("/api/comments/update/{commentId}")
-	public ResponseEntity<SuccessResponse> UpdateComment(@PathVariable int commentId , @Valid @RequestBody Comment c){
-		cs.UpdateComment(commentId, c);
-		
-		return ResponseEntity.ok(new SuccessResponse("UPDATESUCCESS" , "Comment Updated Successfully"));
-	}
 
+    private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
+
+    @Autowired
+    private CommentService cs;
+
+    /**
+     * Deletes a comment by its ID.
+     * 
+     * @param commentId the ID of the comment to delete
+     * @return ResponseEntity with success message
+     */
+    @DeleteMapping("/api/comments/delete/{commentId}")
+    public ResponseEntity<SuccessResponse> DeleteCommentById(@PathVariable int commentId) {
+        logger.info("Request received to delete comment with ID: {}", commentId);
+        cs.DeleteCommentById(commentId);
+        logger.info("Comment with ID: {} deleted successfully", commentId);
+        return ResponseEntity.ok(new SuccessResponse("DELETESUCCESS", "Comment deleted successfully"));
+    }
+
+    /**
+     * Adds a new comment.
+     * 
+     * @param c the CommentDTO object containing comment details
+     * @return ResponseEntity with success message
+     */
+    @RequestMapping(value = "/api/comments/post", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<SuccessResponse> AddNewComment(@Valid @RequestBody CommentDTO c) {
+        logger.info("Request received to add a new comment: {}", c);
+        cs.addComment(c);
+        logger.info("Comment added successfully: {}", c);
+        return ResponseEntity.ok(new SuccessResponse("POSTSUCCESS", "Comments added successfully"));
+    }
+
+    /**
+     * Updates a comment by its ID.
+     * 
+     * @param commentId the ID of the comment to update
+     * @param c the Comment object containing updated details
+     * @return ResponseEntity with success message
+     */
+    @PutMapping("/api/comments/update/{commentId}")
+    public ResponseEntity<SuccessResponse> UpdateComment(@PathVariable int commentId, @Valid @RequestBody Comment c) {
+        logger.info("Request received to update comment with ID: {}", commentId);
+        cs.UpdateComment(commentId, c);
+        logger.info("Comment with ID: {} updated successfully", commentId);
+        return ResponseEntity.ok(new SuccessResponse("UPDATESUCCESS", "Comment Updated Successfully"));
+    }
 }

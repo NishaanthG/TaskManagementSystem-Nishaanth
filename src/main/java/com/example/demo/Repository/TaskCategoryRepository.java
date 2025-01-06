@@ -10,6 +10,10 @@ import org.springframework.data.repository.query.Param;
 import com.example.demo.Model.TaskCategory;
 import com.example.demo.Model.TaskCategoryID;
 
+/**
+ * Repository interface for managing TaskCategory entities.
+ * Extends JpaRepository to provide CRUD operations and additional JPA functionalities.
+ */
 public interface TaskCategoryRepository extends JpaRepository<TaskCategory, TaskCategoryID>{
 	
 }

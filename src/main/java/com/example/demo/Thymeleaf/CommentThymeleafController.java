@@ -9,6 +9,9 @@ import com.example.demo.Model.Comment;
 import com.example.demo.Service.CommentService;
 import com.example.demo.dto.CommentDTO;
 
+/**
+ * Thymeleaf Controller for managing comments.
+ */
 @Controller
 @RequestMapping("/comments")
 public class CommentThymeleafController {
@@ -18,6 +21,9 @@ public class CommentThymeleafController {
 
     /**
      * Displays the form for creating a new comment.
+     *
+     * @param model the model to pass data to the view
+     * @return the HTML template for creating a new comment
      */
     @GetMapping("/new")
     public String showCreateCommentForm(Model model) {
@@ -27,6 +33,9 @@ public class CommentThymeleafController {
 
     /**
      * Handles the submission of a new comment.
+     *
+     * @param comment the comment data transfer object
+     * @return a redirect to the comments page
      */
     @PostMapping("/add")
     public String addComment(@ModelAttribute("comment") CommentDTO comment) {
@@ -36,16 +45,22 @@ public class CommentThymeleafController {
 
     /**
      * Displays all comments.
+     *
+     * @param model the model to pass data to the view
+     * @return the HTML template for displaying all comments
      */
     @GetMapping("/all")
     public String listAllComments(Model model) {
-        // Fetch all comments (implement a method in service to fetch all comments)
         model.addAttribute("comments", cs.getAllComments());
         return "comment-list";
     }
 
     /**
      * Displays the form for updating a comment.
+     *
+     * @param commentId the ID of the comment to update
+     * @param model     the model to pass data to the view
+     * @return the HTML template for updating a comment
      */
     @GetMapping("/edit/{commentId}")
     public String showEditCommentForm(@PathVariable int commentId, Model model) {
@@ -56,6 +71,10 @@ public class CommentThymeleafController {
 
     /**
      * Handles the submission of an updated comment.
+     *
+     * @param commentId     the ID of the comment to update
+     * @param updatedComment the updated comment data
+     * @return a redirect to the comments page
      */
     @PostMapping("/update/{commentId}")
     public String updateComment(@PathVariable int commentId, @ModelAttribute("comment") Comment updatedComment) {
@@ -65,6 +84,9 @@ public class CommentThymeleafController {
 
     /**
      * Deletes a comment.
+     *
+     * @param commentId the ID of the comment to delete
+     * @return a redirect to the comments page
      */
     @GetMapping("/delete/{commentId}")
     public String deleteComment(@PathVariable int commentId) {
